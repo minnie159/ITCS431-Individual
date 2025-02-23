@@ -1,0 +1,32 @@
+name: Java CI
+
+on:
+  push:
+    branches:
+      - Main
+  pull_request:
+    branches:
+      - Main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: '11'  # Change if needed
+
+    - name: Compile Java
+      run: |
+        cd HolidayTravelVehicles  # Ensure the correct folder path
+        javac *.java
+
+    - name: Run Java Program
+      run: |
+        cd HolidayTravelVehicles
+        java Main
