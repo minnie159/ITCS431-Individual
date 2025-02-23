@@ -3,29 +3,30 @@ name: Java CI
 on:
   push:
     branches:
-      - Master
+      - Main  
   pull_request:
     branches:
-      - Master
+      - Main
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout code
-    uses: actions/checkout@v3
-    with:
-      ref: ${{ github.event.pull_request.head.ref }}
-      fetch-depth: ${{ env.PR_FETCH_DEPTH }}
-  - name: Set up JDK
-    uses: actions/setup-java@v1
-    with:
-      java-version: '11' # You can change this to the version you want
-  - name: Compile Java
-    run: |
-      cd HolidayTravelVehicles
-      javac -d . *.java
-      # Compile java file from directory
-  - name: Run Java Program
-    run: |
-      cd HolidayTravelVehicles
-      java Main
+      uses: actions/checkout@v3
+
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: '11'  # Change if needed
+
+    - name: Compile Java
+      run: |
+        cd HolidayTravelVehicles  # Ensure the correct folder path
+        javac *.java
+
+    - name: Run Java Program
+      run: |
+        cd HolidayTravelVehicles
+        java Main
